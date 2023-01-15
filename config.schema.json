@@ -28,14 +28,14 @@
         "default": "GET",
         "description": "The HTTP method to be used to communicate with the device API."
       },
-      "openURL": {
-        "title": "Open URL",
+      "unlockURL": {
+        "title": "Unlock URL",
         "type": "string",
         "required": true,
         "description": "URL to trigger the opening of your garage"
       },
-      "closeURL": {
-        "title": "Close URL",
+      "lockURL": {
+        "title": "Lock URL",
         "type": "string",
         "required": true,
         "description": "URL to trigger the closing of your garage"
@@ -49,32 +49,6 @@
         "title": "Password",
         "type": "string",
         "description": "Password if HTTP authentication is enabled"
-      },
-
-      "openTime": {
-        "title": "Time to open the door",
-        "type": "integer",
-        "required": true,
-        "default": 10,
-        "description": "Time (in seconds) to simulate your garage opening"
-      },
-      "closeTime": {
-        "title": "Time to close the door",
-        "type": "integer",
-        "default": 10,
-        "description": "Time (in seconds) to simulate your garage closing"
-      },
-      "autoLock": {
-        "title": "Auto lock",
-        "type": "boolean",
-        "default": false,
-        "description": "Whether your garage should auto-close after being opened"
-      },
-      "autoLockDelay": {
-        "title": "Auto lock delay",
-        "type": "integer",
-        "default": 20,
-        "description": "Time (in seconds) until your garage will automatically close (if enabled)"
       },
       "polling": {
         "title": "Poll state",
@@ -99,31 +73,18 @@
         "default": "$.inputs[0].input",
         "description": "JSONPath that identifies the property that contains the status of the door (e.g. `$.inputs[0].input` is the default for Shelly 1) | `$.inputs[0].input`"
       },
-      "statusValueOpen": {
-        "title": "Open status value",
+      "statusValueUnlocked": {
+        "title": "Unlocked status value",
         "type": "string",
         "default": "0",
-        "description": "Regex that will match the `open` state of the relay status (e.g. `open`)"
+        "description": "Regex that will match the `unlocked` state of the relay status (e.g. `unlocked`)"
       },
-      "statusValueClosed": {
-        "title": "Closed status value",
+      "statusValueLocked": {
+        "title": "Locked status value",
         "type": "string",
         "default": "1",
-        "description": "Regex that will match the `closed` state of the relay status (e.g. `closed`)"
+        "description": "Regex that will match the `locked` state of the relay status (e.g. `locked`)"
       },
-      "statusValueOpening": {
-        "title": "Opening status value",
-        "type": "string",
-        "default": "2",
-        "description": "Regex that will match the `opening` state of the relay status (e.g. `opening`)"
-      },
-      "statusValueClosing": {
-        "title": "Closing status value",
-        "type": "string",
-        "default": "3",
-        "description": "Regex that will match the `closing` state of the relay status (e.g. `closing`)"
-      },
-
       "manufacturer": {
         "title": "Manufactor",
         "type": "string",
