@@ -111,8 +111,8 @@ DoorLockOpener.prototype = {
           } else {
             statusValue = responseBody
           }
-          this.service.getCharacteristic(Characteristic.LockCurrentState).updateValue(statusValue)
           this.service.getCharacteristic(Characteristic.LockTargetState).updateValue(statusValue)
+          this.service.getCharacteristic(Characteristic.LockCurrentState).updateValue(statusValue)
 
           if (this.config.debug) {
             this.log.debug('Updated lock state to: %s', statusValue)
@@ -159,10 +159,12 @@ DoorLockOpener.prototype = {
 
   unlock: function () {
     this.service.getCharacteristic(Characteristic.LockTargetState).updateValue(0)
+    this.service.getCharacteristic(Characteristic.LockCurrentState).updateValue(0)
   },
 
   lock: function () {
     this.service.getCharacteristic(Characteristic.LockTargetState).updateValue(1)
+    this.service.getCharacteristic(Characteristic.LockCurrentState).updateValue(1)
   },
 
   getServices: function () {
