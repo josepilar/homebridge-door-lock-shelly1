@@ -6,7 +6,7 @@ const jp = require('jsonpath')
 module.exports = function (homebridge) {
   Service = homebridge.hap.Service
   Characteristic = homebridge.hap.Characteristic
-  homebridge.registerAccessory('homebridge-door-lock-shelly1', 'ShellyDoorLockOpener', DoorLockOpener)
+  homebridge.registerAccessory('homebridge-door-lock-shelly1', 'ShellyDoorLock', DoorLockOpener)
 }
 
 function DoorLockOpener(log, config) {

@@ -25,7 +25,7 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
 ```json
 "accessories": [
      {
-        "accessory": "ShellyDoorLockOpener",
+        "accessory": "ShellyDoorLock",
         "name": "Back door",
         "http_method": "GET",
         "unlockURL": "http://shelly_ip/relay/0?turn=on",
@@ -51,7 +51,7 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
 
 | Key         | Description                             | Default |
 | ----------- | --------------------------------------- | ------- |
-| `accessory` | Must be `GarageDoorOpener`              | N/A     |
+| `accessory` | Must be `ShellyDoorLock`                | N/A     |
 | `name`      | Name to appear in the Home app          | N/A     |
 | `unlockURL` | URL to trigger the opening of your lock | N/A     |
 | `lockURL`   | URL to trigger the closing of your lock | N/A     |

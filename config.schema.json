@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "ShellyDoorLockOpener",
+  "pluginAlias": "ShellyDoorLock",
   "pluginType": "accessory",
   "singular": false,
   "schema": {

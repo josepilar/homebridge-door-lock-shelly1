@@ -1,5 +1,5 @@
 {
-  "accessory": "ShellyDoorLockOpener",
+  "accessory": "ShellyDoorLock",
   "name": "Back door",
   "http_method": "GET",
   "unlockURL": "http://192.168.1.24/relay/0?turn=on",
