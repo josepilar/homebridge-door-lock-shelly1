@@ -15,17 +15,8 @@ function DoorLockOpener(log, config) {
 
   this.name = config.name
 
-  this.openURL = config.openURL
-  this.closeURL = config.closeURL
-
-  this.openTime = config.openTime || 10
-  this.closeTime = config.closeTime || 10
-
-  this.switchOff = config.switchOff || false
-  this.switchOffDelay = config.switchOffDelay || 2
-
-  this.autoLock = config.autoLock || false
-  this.autoLockDelay = config.autoLockDelay || 20
+  this.unlockURL = config.unlockURL
+  this.lockURL = config.lockURL
 
   this.manufacturer = config.manufacturer || packageJson.author.name
   this.serial = config.serial || packageJson.version
@@ -44,10 +35,8 @@ function DoorLockOpener(log, config) {
   this.statusURL = config.statusURL
   this.statusKey = config.statusKey || '$.inputs[0].input'
 
-  this.statusValueOpen = config.statusValueOpen || '0'
-  this.statusValueClosed = config.statusValueClosed || '1'
-  this.statusValueOpening = config.statusValueOpening || '2'
-  this.statusValueClosing = config.statusValueClosing || '3'
+  this.statusValueUnlocked = config.statusValueUnlocked || '0'
+  this.statusValueLocked = config.statusValueLocked || '1'
 
   if (this.username != null && this.password != null) {
     this.auth = {
@@ -141,9 +130,9 @@ DoorLockOpener.prototype = {
     this.log.debug('Setting LockTargetState to %s', value)
 
     if (value === 1) {
-      url = this.closeURL
+      url = this.lockURL
     } else {
-      url = this.openURL
+      url = this.unlockURL
     }
 
     this._httpRequest(

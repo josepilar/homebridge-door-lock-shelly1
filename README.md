@@ -25,18 +25,14 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
 ```json
 "accessories": [
      {
-        "accessory": "GarageDoorOpener",
+        "accessory": "ShellyDoorLockOpener",
         "name": "Back door",
         "http_method": "GET",
         "openURL": "http://shelly_ip/relay/0?turn=on",
         "closeURL": "http://shelly_ip/relay/0?turn=on",
-        "autoLock": false,
-        "autoLockDelay": 60,
-        "openTime": 21,
-        "closeTime": 17,
         "polling": true,
         "pollInterval": 60,
-        "username": "garage",
+        "username": "lock",
         "password": "Mh4hc7EDJF8mMkzv",
         "manufacturer": "BFT",
         "model": "SCE-MA (Board)",
