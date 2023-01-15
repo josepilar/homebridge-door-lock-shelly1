@@ -28,8 +28,8 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
         "accessory": "ShellyDoorLockOpener",
         "name": "Back door",
         "http_method": "GET",
-        "openURL": "http://shelly_ip/relay/0?turn=on",
-        "closeURL": "http://shelly_ip/relay/0?turn=on",
+        "unlockURL": "http://shelly_ip/relay/0?turn=on",
+        "lockURL": "http://shelly_ip/relay/0?turn=on",
         "polling": true,
         "pollInterval": 60,
         "username": "lock",
@@ -38,8 +38,8 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
         "model": "SCE-MA (Board)",
         "statusURL": "http://shelly_ip/status",
         "statusKey": "$.inputs[0].input",
-        "statusValueOpen": "0",
-        "statusValueClosed": "1",
+        "statusValueUnlocked": "0",
+        "statusValueLocked`": "1",
         "debug": "false"
     }
 ]
@@ -49,31 +49,23 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
 
 ### Core
 
-| Key         | Description                               | Default |
-| ----------- | ----------------------------------------- | ------- |
-| `accessory` | Must be `GarageDoorOpener`                | N/A     |
-| `name`      | Name to appear in the Home app            | N/A     |
-| `openURL`   | URL to trigger the opening of your garage | N/A     |
-| `closeURL`  | URL to trigger the closing of your garage | N/A     |
+| Key         | Description                             | Default |
+| ----------- | --------------------------------------- | ------- |
+| `accessory` | Must be `GarageDoorOpener`              | N/A     |
+| `name`      | Name to appear in the Home app          | N/A     |
+| `unlockURL` | URL to trigger the opening of your lock | N/A     |
+| `lockURL`   | URL to trigger the closing of your lock | N/A     |
 
 ### Optional fields
 
-| Key                  | Description                                                                                                                                                                 | Default             |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| `openTime`           | Time (in seconds) to simulate your garage opening                                                                                                                           | `10`                |
-| `closeTime`          | Time (in seconds) to simulate your garage closing                                                                                                                           | `10`                |
-| `autoLock`           | Whether your garage should auto-close after being opened                                                                                                                    | `false`             |
-| `autoLockDelay`      | Time (in seconds) until your garage will automatically close (if enabled)                                                                                                   | `20`                |
-| `switchOff`          | Closes the garage immediately without animation. For IR remote control use.                                                                                                 | `false`             |
-| `switchOffDelay`     | Time (in seconds) until your garage will automatically close without animation (if enabled)                                                                                 | `2`                 |
-| `polling`            | Whether the state should be polled at intervals                                                                                                                             | `false`             |
-| `pollInterval`       | Time (in seconds) between device polls (if `polling` is enabled)                                                                                                            | `120`               |
-| `statusURL`          | URL to retrieve state on poll (if `statusField*` options are not set, expects HTTP response body to be `0` or `1`)                                                          | N/A                 |
-| `statusKey`          | [JSONPath](https://www.npmjs.com/package/jsonpath) that identifies the property that contains the status of the door (e.g. `$.inputs[0].input` is the default for Shelly 1) | `$.inputs[0].input` |
-| `statusValueOpen`    | Regex that will match the `open` state of the relay status (e.g. `open`)                                                                                                    | `0`                 |
-| `statusValueClosed`  | Regex that will match the `closed` state of the relay status (e.g. `closed`)                                                                                                | `1`                 |
-| `statusValueOpening` | Regex that will match the `opening` state of the relay status (e.g. `opening`)                                                                                              | `2`                 |
-| `statusValueClosing` | Regex that will match the `closing` state of the relay status (e.g. `closing`)                                                                                              | `3`                 |
+| Key                   | Description                                                                                                                                                                 | Default             |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `polling`             | Whether the state should be polled at intervals                                                                                                                             | `false`             |
+| `pollInterval`        | Time (in seconds) between device polls (if `polling` is enabled)                                                                                                            | `120`               |
+| `statusURL`           | URL to retrieve state on poll (if `statusField*` options are not set, expects HTTP response body to be `0` or `1`)                                                          | N/A                 |
+| `statusKey`           | [JSONPath](https://www.npmjs.com/package/jsonpath) that identifies the property that contains the status of the door (e.g. `$.inputs[0].input` is the default for Shelly 1) | `$.inputs[0].input` |
+| `statusValueUnlocked` | Regex that will match the `open` state of the relay status (e.g. `open`)                                                                                                    | `0`                 |
+| `statusValueLocked`   | Regex that will match the `closed` state of the relay status (e.g. `closed`)                                                                                                | `1`                 |
 
 ### Additional options
 
@@ -93,21 +85,14 @@ NOTE: Don't forget to update `shelly_ip` to the IP address of your Shelly relay.
 
 | State | Description |
 | ----- | ----------- |
-| `0`   | Open        |
-| `1`   | Closed      |
-| `2`   | Opening     |
-| `3`   | Closing     |
+| `0`   | Unlocked    |
+| `1`   | Locked      |
 
 ## Wiring
 
 ![Shelly 1 wiring](https://savjee.be/uploads/2020-06-smart-garage-door-shelly-home-assistant/shelly-schematic-dc.png)
 
 More information at https://savjee.be/2020/06/make-garage-door-opener-smart-shelly-esphome-home-assistant/
-
-### Videos on wiring
-
-- [Shelly1 Garage Door Control](https://www.youtube.com/watch?v=aV7gOWjia5w)
-- [Automate your Garage Door! The PERFECT First DIY Smart Home Project](https://www.youtube.com/watch?v=WEZUxXNiERQ)
 
 ## Door open/closed sensor
 
@@ -122,8 +107,8 @@ For Shelly 1 and a normally open reed switch (NO) the following options need to 
      {
        ...
 		 "statusKey": "$.inputs[0].input",
-		 "statusValueOpen": "0",
-		 "statusValueClosed": "1"
+		 "statusValueUnlocked": "0",
+		 "statusValueLocked": "1"
 		 ...
 	  }
 	]
@@ -136,8 +121,8 @@ For a normally closed switch (NC), use:
      {
        ...
 		 "statusKey": "$.inputs[0].input",
-		 "statusValueOpen": "1",
-		 "statusValueClosed": "0"
+		 "statusValueUnlocked": "1",
+		 "statusValueLocked": "0"
 		 ...
 	  }
 	]

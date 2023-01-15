@@ -2,8 +2,8 @@
   "accessory": "ShellyDoorLock",
   "name": "Back door",
   "http_method": "GET",
-  "openURL": "http://192.168.1.24/relay/0?turn=on",
-  "closeURL": "http://192.168.1.24/relay/0?turn=on",
+  "unlockURL": "http://192.168.1.24/relay/0?turn=on",
+  "lockURL": "http://192.168.1.24/relay/0?turn=on",
   "polling": true,
   "pollInterval": 60,
   "username": "lock",
@@ -12,7 +12,7 @@
   "model": "SCE-MA (Board)",
   "statusURL": "http://192.168.1.24/status",
   "statusKey": "$.inputs[0].input",
-  "statusValueOpen": "0",
-  "statusValueClosed": "1",
+  "statusValueUnlocked": "0",
+  "statusValueLocked": "1",
   "debug": false
 }
