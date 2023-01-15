@@ -1,6 +1,6 @@
 {
   "name": "homebridge-door-lock-shelly1",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Homebridge plugin for a simple door lock opener using Shelly 1 relay",
   "main": "index.js",
   "engines": {
