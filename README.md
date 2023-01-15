@@ -2,11 +2,11 @@
   <a href="https://github.com/homebridge/homebridge"><img src="https://raw.githubusercontent.com/homebridge/branding/master/logos/homebridge-color-round-stylized.png" height="140"></a>
 </p>
 
-# homebridge-garage-door-shelly1
+# homebridge-door-lock-shelly1
 
-[![npm](https://img.shields.io/npm/v/homebridge-garage-door-shelly1.svg)](https://www.npmjs.com/package/homebridge-garage-door-shelly1) [![npm](https://img.shields.io/npm/dt/homebridge-garage-door-shelly1.svg)](https://www.npmjs.com/package/homebridge-garage-door-shelly1)
+[![npm](https://img.shields.io/npm/v/homebridge-door-lock-shelly1.svg)](https://www.npmjs.com/package/homebridge-door-lock-shelly1) [![npm](https://img.shields.io/npm/dt/homebridge-door-lock-shelly1.svg)](https://www.npmjs.com/package/homebridge-door-lock-shelly1)
 
-This work is forked from https://github.com/andreaseu/homebridge-garage-remote-http. Kudos to Andreas.
+This work is forked from https://github.com/jmaferreira/homebridge-garage-door-shelly1.git. Kudos to Miguel & Andreas.
 
 ## Description
 
@@ -15,7 +15,7 @@ This [homebridge](https://github.com/nfarina/homebridge) plugin exposes a web-ba
 ## Installation
 
 1. Install [Homebridge](https://github.com/homebridge/homebridge).
-2. Install the plugin by running `npm install -g homebridge-garage-door-shelly1` or by searching for `homebridge-garage-door-shelly1` on the [plugins tab](https://github.com/homebridge/homebridge#installing-plugins) if you are using [Homebridge UI](https://www.npmjs.com/package/homebridge-config-ui-x) or [Hoobs](https://hoobs.org/).
+2. Install the plugin by running `npm install -g homebridge-door-lock-shelly1` or by searching for `homebridge-door-lock-shelly1` on the [plugins tab](https://github.com/homebridge/homebridge#installing-plugins) if you are using [Homebridge UI](https://www.npmjs.com/package/homebridge-config-ui-x) or [Hoobs](https://hoobs.org/).
 3. Update your Homebridge `config.json` accordingly.
 
 ## Configuration

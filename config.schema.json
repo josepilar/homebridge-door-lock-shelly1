@@ -1,149 +1,145 @@
 {
-    "pluginAlias": "GarageDoorOpener",
-    "pluginType": "accessory",
-    "singular": false,
-    "schema": {
-        "type": "object",
-        "properties": {
-            "name": {
-                "title": "Name",
-                "type": "string",
-                "required": true,
-                "description": "Name to appear in the Home app"
+  "pluginAlias": "ShellyDoorLock",
+  "pluginType": "accessory",
+  "singular": false,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "description": "Name to appear in the Home app"
+      },
+      "http_method": {
+        "title": "HTTP Method",
+        "type": "string",
+        "oneOf": [
+          {
+            "title": "GET",
+            "enum": ["GET"]
+          },
+          {
+            "title": "POST",
+            "enum": ["POST"]
+          }
+        ],
+        "required": true,
+        "default": "GET",
+        "description": "The HTTP method to be used to communicate with the device API."
+      },
+      "openURL": {
+        "title": "Open URL",
+        "type": "string",
+        "required": true,
+        "description": "URL to trigger the opening of your garage"
+      },
+      "closeURL": {
+        "title": "Close URL",
+        "type": "string",
+        "required": true,
+        "description": "URL to trigger the closing of your garage"
+      },
+      "username": {
+        "title": "Username",
+        "type": "string",
+        "description": "Username if HTTP authentication is enabled"
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "description": "Password if HTTP authentication is enabled"
+      },
 
-            },
-            "http_method": {
-                "title": "HTTP Method",
-                "type": "string",
-                "oneOf": [{
-                    "title": "GET",
-                    "enum": [
-                        "GET"
-                    ]
-                }, {
-                    "title": "POST",
-                    "enum": [
-                        "POST"
-                    ]
-                }],
-                "required": true,
-                "default": "GET",
-                "description": "The HTTP method to be used to communicate with the device API."
+      "openTime": {
+        "title": "Time to open the door",
+        "type": "integer",
+        "required": true,
+        "default": 10,
+        "description": "Time (in seconds) to simulate your garage opening"
+      },
+      "closeTime": {
+        "title": "Time to close the door",
+        "type": "integer",
+        "default": 10,
+        "description": "Time (in seconds) to simulate your garage closing"
+      },
+      "autoLock": {
+        "title": "Auto lock",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether your garage should auto-close after being opened"
+      },
+      "autoLockDelay": {
+        "title": "Auto lock delay",
+        "type": "integer",
+        "default": 20,
+        "description": "Time (in seconds) until your garage will automatically close (if enabled)"
+      },
+      "polling": {
+        "title": "Poll state",
+        "type": "boolean",
+        "default": false,
+        "description": "Whether the state should be polled at intervals (requires magnetic sensor)."
+      },
+      "pollInterval": {
+        "title": "Polling interval",
+        "type": "integer",
+        "default": 120,
+        "description": "Time (in seconds) between device polls (if `polling` is enabled) "
+      },
+      "statusURL": {
+        "title": "Status polling URL",
+        "type": "string",
+        "description": "URL to retrieve state on poll (if `statusField*` options are not set, expects HTTP response body to be `0` or `1`)"
+      },
+      "statusKey": {
+        "title": "Status Key",
+        "type": "string",
+        "default": "$.inputs[0].input",
+        "description": "JSONPath that identifies the property that contains the status of the door (e.g. `$.inputs[0].input` is the default for Shelly 1) | `$.inputs[0].input`"
+      },
+      "statusValueOpen": {
+        "title": "Open status value",
+        "type": "string",
+        "default": "0",
+        "description": "Regex that will match the `open` state of the relay status (e.g. `open`)"
+      },
+      "statusValueClosed": {
+        "title": "Closed status value",
+        "type": "string",
+        "default": "1",
+        "description": "Regex that will match the `closed` state of the relay status (e.g. `closed`)"
+      },
+      "statusValueOpening": {
+        "title": "Opening status value",
+        "type": "string",
+        "default": "2",
+        "description": "Regex that will match the `opening` state of the relay status (e.g. `opening`)"
+      },
+      "statusValueClosing": {
+        "title": "Closing status value",
+        "type": "string",
+        "default": "3",
+        "description": "Regex that will match the `closing` state of the relay status (e.g. `closing`)"
+      },
 
-            },
-            "openURL": {
-                "title": "Open URL",
-                "type": "string",
-                "required": true,
-                "description": "URL to trigger the opening of your garage"
-            },
-            "closeURL": {
-                "title": "Close URL",
-                "type": "string",
-                "required": true,
-                "description": "URL to trigger the closing of your garage"
-            },
-            "username": {
-                "title": "Username",
-                "type": "string",
-                "description": "Username if HTTP authentication is enabled"
-            },
-            "password": {
-                "title": "Password",
-                "type": "string",
-                "description": "Password if HTTP authentication is enabled"
-            },
-
-            "openTime": {
-                "title": "Time to open the door",
-                "type": "integer",
-                "required": true,
-                "default": 10,
-                "description": "Time (in seconds) to simulate your garage opening"
-            },
-            "closeTime": {
-                "title": "Time to close the door",
-                "type": "integer",
-                "default": 10,
-                "description": "Time (in seconds) to simulate your garage closing"
-            },
-            "autoLock": {
-                "title": "Auto lock",
-                "type": "boolean",
-                "default": false,
-                "description": "Whether your garage should auto-close after being opened"
-            },
-            "autoLockDelay": {
-                "title": "Auto lock delay",
-                "type": "integer",
-                "default": 20,
-                "description": "Time (in seconds) until your garage will automatically close (if enabled)"
-            },
-            "polling": {
-                "title": "Poll state",
-                "type": "boolean",
-                "default": false,
-                "description": "Whether the state should be polled at intervals (requires magnetic sensor)."
-            },
-            "pollInterval": {
-                "title": "Polling interval",
-                "type": "integer",
-                "default": 120,
-                "description": "Time (in seconds) between device polls (if `polling` is enabled) "
-            },
-            "statusURL": {
-                "title": "Status polling URL",
-                "type": "string",
-                "description": "URL to retrieve state on poll (if `statusField*` options are not set, expects HTTP response body to be `0` or `1`)"
-            },
-            "statusKey": {
-                "title": "Status Key",
-                "type": "string",
-                "default": "$.inputs[0].input",
-                "description": "JSONPath that identifies the property that contains the status of the door (e.g. `$.inputs[0].input` is the default for Shelly 1) | `$.inputs[0].input`"
-            },
-            "statusValueOpen": {
-                "title": "Open status value",
-                "type": "string",
-                "default": "0",
-                "description": "Regex that will match the `open` state of the relay status (e.g. `open`)"
-            },
-            "statusValueClosed": {
-                "title": "Closed status value",
-                "type": "string",
-                "default": "1",
-                "description": "Regex that will match the `closed` state of the relay status (e.g. `closed`)"
-            },
-            "statusValueOpening": {
-                "title": "Opening status value",
-                "type": "string",
-                "default": "2",
-                "description": "Regex that will match the `opening` state of the relay status (e.g. `opening`)"
-            },
-            "statusValueClosing": {
-                "title": "Closing status value",
-                "type": "string",
-                "default": "3",
-                "description": "Regex that will match the `closing` state of the relay status (e.g. `closing`)"
-            },
-
-            "manufacturer": {
-                "title": "Manufactor",
-                "type": "string",
-                "description": "Appears under the Manufacturer field for the accessory"
-            },
-            "model": {
-                "title": "Model",
-                "type": "string",
-                "description": "Appears under the Model field for the accessory"
-            },
-            "debug": {
-                "title": "Debug mode",
-                "type": "boolean",
-                "default": false,
-                "description": "Turn on debug mode, i.e. additional information will show up on the homebridge log."
-            }
-
-        }
+      "manufacturer": {
+        "title": "Manufactor",
+        "type": "string",
+        "description": "Appears under the Manufacturer field for the accessory"
+      },
+      "model": {
+        "title": "Model",
+        "type": "string",
+        "description": "Appears under the Model field for the accessory"
+      },
+      "debug": {
+        "title": "Debug mode",
+        "type": "boolean",
+        "default": false,
+        "description": "Turn on debug mode, i.e. additional information will show up on the homebridge log."
+      }
     }
+  }
 }
